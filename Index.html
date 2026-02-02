@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACS | Adarsh Computer Service & JCB Parts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #00a2ff;
+            --neon-pink: #d400ff;
+            --dark-bg: #050505;
+            --card-bg: #121212;
+            --wa-green: #25d366;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #000428, #004e92);
+            padding: 40px 10px;
+            border-bottom: 3px solid var(--neon-pink);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 0 20px var(--primary-blue);
+        }
+
+        .header-text h1 { color: #ffd700; margin: 0; font-size: 2.2rem; text-transform: uppercase; }
+        .header-text h2 { margin: 5px 0; font-weight: 300; letter-spacing: 1px; color: #fff; }
+
+        /* Product Grid */
+        .product-section { padding: 60px 15px; margin-bottom: 100px; }
+        .section-title { font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-blue); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-pink);
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 220px;
+            background: #1a1a1a;
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .product-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .price-tag { font-size: 1.4rem; color: #00ff88; margin-bottom: 15px; font-weight: bold; }
+
+        .chat-btn {
+            background: var(--wa-green);
+            color: white;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        /* Floating Catalog Button */
+        .floating-catalog {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffd700;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        /* Social Media Section */
+        .social-page {
+            background: #080808;
+            padding: 80px 20px;
+            border-top: 2px solid #1a1a1a;
+        }
+
+        .social-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 4px solid var(--neon-pink);
+            object-fit: cover;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 55px;
+            height: 55px;
+            background: #151515;
+            margin: 5px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+        }
+
+        footer { background: #000; padding: 60px 20px; border-top: 1px solid #1a1a1a; }
+        .contact-card { max-width: 400px; margin: 0 auto; text-align: left; background: #0a0a0a; padding: 20px; border-radius: 15px; border-left: 4px solid var(--primary-blue); }
+    </style>
+</head>
+<body onclick="playGreeting()">
+
+    <header>
+        <div class="logo-container">
+            <img src="1000106579.png" alt="ACS Logo" class="logo-img">
+            <div class="header-text">
+                <h1>JCB PRODUCT SALE</h1>
+                <h2>ADARSH KUMAR CHANDRAVANSHI</h2>
+            </div>
+        </div>
+    </header>
+
+    <a href="https://wa.me/c/918252900810" class="floating-catalog" target="_blank">
+        <i class="fab fa-whatsapp"></i> VIEW FULL CATALOG
+    </a>
+
+    <section class="product-section">
+        <h2 class="section-title">Hamare JCB Products</h2>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img-box"><img src="grease_gun.jpg" alt="JCB Part"></div>
+                <div class="product-info">
+                    <h3>Grease Gun Coupler</h3>
+                    <p>Heavy duty leak-proof design for JCB machinery.</p>
+                    <span class="price-tag">Best Wholesale Price</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in Grease Gun Coupler" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="jcb_filter.jpg" alt="JCB Filter"></div>
+                <div class="product-info">
+                    <h3>JCB Genuine Filters</h3>
+                    <p>High performance Oil and Fuel filters.</p>
+                    <span class="price-tag">Genuine Quality</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Genuine Filters" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+            
+            </div>
+    </section>
+
+    <div class="social-page">
+        <h2>About Me & Social Links</h2>
+        <img src="social_profile.jpg" alt="Adarsh Kumar" class="social-photo">
+        <div class="social-icons">
+            <a href="https://youtube.com/@hk_gaming_india_yt?si=1q2o9oqvGcp0nxck" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/royal_chandravanshi_0.7" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/adarsh24361" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb72goSFSAt3aaSAp11y" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/kumar-karanraj" target="_blank"><i class="fab fa-snapchat"></i></a>
+            <a href="https://www.linkedin.com/in/adarsh-kumar-chandravanshi-562b75375" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <h2>Contact Details</h2>
+        <div class="contact-card">
+            <p><i class="fas fa-user"></i> ADARSH KUMAR CHANDRAVANSHI</p>
+            <p><i class="fas fa-phone-alt"></i> 8252900810</p>
+            <p><i class="fas fa-envelope"></i> acs.adarsh.com@gmail.com</p>
+        </div>
+        <br>
+        <p style="font-size: 0.8rem; color: #444;">&copy; 2026 Adarsh Computer Service</p>
+    </footer>
+
+    <script>
+        let voicePlayed = false;
+        function playGreeting() {
+            if (!voicePlayed) {
+                const welcomeMsg = new SpeechSynthesisUtterance();
+                welcomeMsg.text = "Welcome to Adarsh Computer Service and Solve";
+                welcomeMsg.lang = 'en-US';
+                window.speechSynthesis.speak(welcomeMsg);
+                voicePlayed = true;
+            }
+        }
+    </script>
+</body>
+</html>
