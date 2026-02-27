@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACS | Adarsh Computer Service</title>
+    <title>ACS | Adarsh Computer Service & JCB Parts</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-blue: #00a2ff;
             --neon-pink: #d400ff;
             --dark-bg: #050505;
+            --card-bg: #121212;
+            --wa-green: #25d366;
             --sidebar-bg: #111;
         }
 
@@ -18,10 +20,12 @@
             margin: 0;
             background-color: var(--dark-bg);
             color: white;
+            text-align: center;
+            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* --- Sidebar Navigation --- */
+        /* --- Sidebar Navigation (Three Lines Menu) --- */
         .sidebar {
             height: 100%;
             width: 0;
@@ -44,6 +48,7 @@
             display: block;
             transition: 0.3s;
             border-bottom: 1px solid #222;
+            text-align: left;
         }
 
         .sidebar a:hover { color: var(--primary-blue); background: #1a1a1a; }
@@ -55,9 +60,12 @@
             font-size: 36px;
             margin-left: 50px;
             border: none;
+            background: none;
+            color: #fff;
+            cursor: pointer;
         }
 
-        /* Menu Icon (Three Lines) */
+        /* Menu Icon (Three Lines) - Fixed on top left */
         .menu-icon {
             font-size: 30px;
             cursor: pointer;
@@ -69,7 +77,13 @@
             padding: 5px 12px;
             border-radius: 8px;
             color: white;
+            box-shadow: 0 0 10px rgba(0,162,255,0.5);
         }
+
+        /* Sidebar Social Media */
+        .sidebar-social { margin-top: 30px; text-align: center; }
+        .sidebar-social p { color: #666; font-size: 14px; margin-bottom: 10px; }
+        .sidebar-social a { display: inline-block; font-size: 24px; border: none; padding: 10px; margin: 0 5px; }
 
         /* --- Header Section --- */
         header {
@@ -77,19 +91,132 @@
             padding: 60px 20px;
             text-align: center;
             border-bottom: 3px solid var(--neon-pink);
+            margin-top: 0;
         }
 
-        .logo-img { width: 100px; border-radius: 50%; border: 2px solid #fff; }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-        /* --- Contact Form Section --- */
-        .contact-form-container {
-            padding: 50px 20px;
-            max-width: 500px;
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 0 20px var(--primary-blue);
+        }
+
+        .header-text h1 { color: #ffd700; margin: 0; font-size: 2.2rem; text-transform: uppercase; }
+        .header-text h2 { margin: 5px 0; font-weight: 300; letter-spacing: 1px; color: #fff; }
+
+        /* --- Floating Catalog Button (CENTERED, BIG, YELLOW GLOW) --- */
+        .floating-catalog {
+            position: fixed;
+            bottom: 30px;
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust exact center */
+            background: #ffd700;
+            color: #000;
+            padding: 18px 40px; /* Bada size */
+            border-radius: 50px;
+            font-weight: 900;
+            text-decoration: none;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem; /* Bada text */
+            animation: pulseGlow 2s infinite; /* Chamakta hua animation */
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05); /* Thoda zoom hoga */
+                box-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 80px rgba(255, 215, 0, 0.8); /* Pila light effect badhega */
+            }
+        }
+
+        /* --- Products Grid Section --- */
+        .product-section { padding: 60px 15px; margin-bottom: 100px; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; color: var(--primary-blue); text-transform: uppercase; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .product-card:hover { transform: translateY(-10px); border-color: var(--neon-pink); }
+
+        .product-img-box {
+            width: 100%;
+            height: 250px;
+            background: transparent; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0; 
+            border-bottom: 1px solid #222; 
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .product-info { padding: 20px; flex-grow: 1; }
+        .product-info h3 { margin: 0 0 10px 0; color: #fff; font-size: 1.2rem; }
+        .price-tag { font-size: 1.2rem; color: #00ff88; font-weight: bold; display: block; margin-bottom: 15px; }
+
+        /* GREEN WhatsApp Chat Button */
+        .chat-btn {
+            background: var(--wa-green);
+            color: white;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .chat-btn:hover { background: #1ebe57; transform: scale(1.03); }
+
+        /* --- Contact Us Form Section --- */
+        .contact-form-container {
+            padding: 80px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            border-top: 1px solid #222;
+        }
+
         .form-group { text-align: left; margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--primary-blue); }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--primary-blue); font-weight: bold; }
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 12px;
@@ -97,33 +224,31 @@
             border: 1px solid #333;
             color: white;
             border-radius: 8px;
+            font-family: inherit;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: #25d366;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
-        .submit-btn:hover { background: #1ebe57; transform: scale(1.02); }
+        .submit-btn:hover { background: #1ebe57; transform: translateY(-3px); }
 
-        /* --- Social Media in Sidebar --- */
-        .sidebar-social {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .sidebar-social a {
-            display: inline-block;
-            font-size: 24px;
-            border: none;
-            padding: 10px;
-        }
+        /* --- Footer Section --- */
+        footer { background: #000; padding: 60px 20px; border-top: 1px solid #1a1a1a; margin-top: 50px; text-align: left; padding-bottom: 100px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .contact-details h3 { color: var(--primary-blue); }
+        .contact-details p { margin: 10px 0; color: #ccc; }
+        .contact-details i { color: var(--primary-blue); width: 25px; text-align: center; margin-right: 10px; }
+        .social-details a { font-size: 2rem; color: white; margin-right: 15px; }
     </style>
 </head>
 <body onclick="playGreeting()">
@@ -133,34 +258,110 @@
     </div>
 
     <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <button class="closebtn" onclick="closeNav()">&times;</button>
         <a href="#"><i class="fas fa-home"></i> Home</a>
-        <a href="https://wa.me/c/918252900810" target="_blank"><i class="fab fa-whatsapp"></i> Open Our Catalog</a>
+        <a href="https://wa.me/c/918252900810"><i class="fab fa-whatsapp"></i> Open Our Catalog</a>
         <a href="https://acsadarsh.github.io/Acs/" target="_blank"><i class="fas fa-tools"></i> Our Service</a>
         <a href="https://acsadarsh.github.io/pan-Mafia-Bittu/" target="_blank"><i class="fas fa-laptop-code"></i> Website Creation</a>
         <a href="#contact-section" onclick="closeNav()"><i class="fas fa-envelope"></i> Contact Us</a>
         <a href="https://share.google/7bQp0x94iQ9wAqf2E" target="_blank"><i class="fab fa-google"></i> Rate on Google</a>
 
         <div class="sidebar-social">
-            <p style="color: #666;">Follow Us</p>
-            <a href="https://youtube.com/@hk_gaming_india_yt"><i class="fab fa-youtube" style="color:#ff0000;"></i></a>
-            <a href="https://www.instagram.com/royal_chandravanshi_0.7"><i class="fab fa-instagram" style="color:#d400ff;"></i></a>
+            <p>Follow Us</p>
+            <a href="https://youtube.com/@hk_gaming_india_yt" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i></a>
+            <a href="https://www.instagram.com/royal_chandravanshi_0.7" target="_blank"><i class="fab fa-instagram" style="color:#d400ff;"></i></a>
         </div>
     </div>
 
+    <a href="https://wa.me/c/918252900810" class="floating-catalog">
+        <i class="fab fa-whatsapp"></i> VIEW FULL CATALOG
+    </a>
+
     <header>
-        <img src="https://ibb.co/hFRHRQ97" alt="ACS Logo" class="logo-img">
-        <h1>ADARSH COMPUTER SERVICE</h1>
-        <p>JCB Product Sale & Technology Solutions</p>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/hFRHRQ97/logo.png" alt="ACS Logo" class="logo-img">
+            <div class="header-text">
+                <h1>JCB PRODUCT SALE</h1>
+                <h2>ADARSH KUMAR CHANDRAVANSHI</h2>
+            </div>
+        </div>
     </header>
 
-    <div style="padding: 20px; text-align: center;">
-        <h2>Check Our Featured Items</h2>
-        <p>Open menu for more options</p>
-    </div>
+    <section class="product-section">
+        <h2 class="section-title">Our JCB Products</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.ibb.co/TBsrGjsy/product1.jpg" alt="JCB Bucket Teeth"></div>
+                <div class="product-info">
+                    <h3>JCB Bucket Teeth</h3>
+                    <span class="price-tag">Best Wholesale Price</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Bucket Teeth" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.ibb.co/84jPMDv0/product2.jpg" alt="JCB Hydraulic Pump"></div>
+                <div class="product-info">
+                    <h3>JCB Hydraulic Pump</h3>
+                    <span class="price-tag">Available</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Hydraulic Pump" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.ibb.co/xWDtJSZ/product3.jpg" alt="JCB Filter"></div>
+                <div class="product-info">
+                    <h3>JCB Engine Oil Filter</h3>
+                    <span class="price-tag">Genuine Part</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Engine Oil Filter" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.ibb.co/JFMhB3Zr/product4.jpg" alt="JCB Transmission Gear"></div>
+                <div class="product-info">
+                    <h3>JCB Transmission Gear</h3>
+                    <span class="price-tag">Ready Stock</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Transmission Gear" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.ibb.co/k27754Fm/product5.jpg" alt="JCB Hydraulic Hose"></div>
+                <div class="product-info">
+                    <h3>JCB Hydraulic Hose</h3>
+                    <span class="price-tag">Durable</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Hydraulic Hose" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box"><img src="https://i.ibb.co/20Bmm8z5/product6.jpg" alt="JCB Starter Motor"></div>
+                <div class="product-info">
+                    <h3>JCB Starter Motor</h3>
+                    <span class="price-tag">Top Rated</span>
+                    <a href="https://wa.me/918252900810?text=I'm interested in JCB Starter Motor" class="chat-btn">
+                        <i class="fab fa-whatsapp"></i> Chat with Dealer
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <section id="contact-section" class="contact-form-container">
-        <h2 style="color: var(--neon-pink);">Contact Us</h2>
+        <h2 style="color: var(--neon-pink); text-transform: uppercase;">Contact Us</h2>
         <div class="form-group">
             <label>Your Name</label>
             <input type="text" id="name" placeholder="Apna naam likhein">
@@ -176,23 +377,43 @@
         <button class="submit-btn" onclick="sendToWhatsApp()">SUBMIT</button>
     </section>
 
+    <footer>
+        <div class="footer-content">
+            <div class="contact-details">
+                <h3>Contact Details</h3>
+                <p><i class="fas fa-user"></i> ADARSH KUMAR CHANDRAVANSHI</p>
+                <p><i class="fas fa-phone-alt"></i> 8252900810</p>
+                <p><i class="fas fa-envelope"></i> acs.adarsh.com@gmail.com</p>
+            </div>
+            <div class="social-details social-page">
+                <h3>Follow Us</h3>
+                <a href="https://youtube.com/@hk_gaming_india_yt" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/royal_chandravanshi_0.7" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/adarsh24361" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://whatsapp.com/channel/0029Vb72goSFSAt3aaSAp11y" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <p style="text-align: center; color: #444; margin-top: 40px; font-size: 0.8rem;">&copy; 2026 Adarsh Computer Service | Powered by ACS</p>
+    </footer>
+
     <script>
         // Sidebar Controls
         function openNav() { document.getElementById("mySidebar").style.width = "280px"; }
         function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
 
-        // WhatsApp Form Submission
+        // WhatsApp Form Submission (Number updated to 8252900810)
         function sendToWhatsApp() {
             var name = document.getElementById('name').value;
             var mobile = document.getElementById('mobile').value;
             var message = document.getElementById('message').value;
 
             if(name == "" || mobile == "") {
-                alert("Please fill name and mobile number");
+                alert("Please fill Name and Mobile number");
                 return;
             }
 
-            var whatsappUrl = "https://wa.me/918254900180?text=" 
+            // Sahi number yahan update kar diya gaya hai
+            var whatsappUrl = "https://wa.me/918252900810?text=" 
                 + "Name: " + name + "%0a" 
                 + "Mobile: " + mobile + "%0a" 
                 + "Message: " + message;
@@ -204,9 +425,10 @@
         let voicePlayed = false;
         function playGreeting() {
             if (!voicePlayed) {
-                const welcomeMsg = new SpeechSynthesisUtterance("Welcome to Adarsh Computer Service and Solve");
-                welcomeMsg.lang = 'en-US';
-                window.speechSynthesis.speak(welcomeMsg);
+                const msg = new SpeechSynthesisUtterance("Welcome to our ACS JCB products");
+                msg.lang = 'en-US';
+                msg.rate = 1;
+                window.speechSynthesis.speak(msg);
                 voicePlayed = true;
             }
         }
